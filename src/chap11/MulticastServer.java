@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.MulticastSocket;
 import java.nio.charset.MalformedInputException;
 
 public class MulticastServer extends Thread{
 	DatagramSocket socket = null;
 	DatagramPacket packet = null;
 	InetAddress channel = null;
-	int port =  20001;
+	int port =  9999;
 	String addresss = "239.0.0.1";
 	boolean onAir = true;
 	
@@ -30,15 +31,18 @@ public class MulticastServer extends Thread{
 				b = msg.getBytes();
 				channel = InetAddress.getByName(addresss);
 				packet = new DatagramPacket(b, b.length, channel, port);
+
 				socket.send(packet);
 				try {
 					sleep(500);
 					System.out.println("방송중 입니다");
 				} catch (Exception e) {
 					// TODO: handle exception
+					e.printStackTrace();
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
+				e.printStackTrace();
 			}
 			
 		}

@@ -8,14 +8,17 @@ public class MulticastClient {
 	MulticastSocket receiver = null;
 	DatagramPacket packet = null;
 	InetAddress channel = null;
-	int port = 20001;
+	int port = 9999;
 	String address =  "239.0.0.1";
 	byte[] b = new byte[100];
 	
 	public MulticastClient() {
 		// TODO Auto-generated constructor stub
 		try {
+
 			receiver = new MulticastSocket(port);
+
+			
 			channel = InetAddress.getByName(address);
 			packet = new DatagramPacket(b, b.length);
 			receiver.joinGroup(channel);
@@ -28,10 +31,10 @@ public class MulticastClient {
 			receiver.close();
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
-	private void mai() {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) {
 		new MulticastClient();
 	}
 }

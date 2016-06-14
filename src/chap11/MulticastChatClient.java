@@ -22,7 +22,7 @@ public class MulticastChatClient extends Frame implements ActionListener{
 	private TextArea display = null;
 	private CardLayout cardlayout = null;
 	
-	DatagramSocket socket = null;
+	MulticastSocket socket = null;
 	DatagramPacket spacket = null;
 	InetAddress schannel = null;
 	int sport = 20005;
@@ -57,7 +57,7 @@ public class MulticastChatClient extends Frame implements ActionListener{
 		add("main", main);
 		
 		try {
-			socket = new DatagramSocket(sport);
+			socket = new MulticastSocket(sport);
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
